@@ -12,11 +12,7 @@ product2.stock_quantity = 5
 product2.save
 
 # Method 3
-product3 = Product.new do |p|
-  p.name = "Product 3"
-  p.description = "Description 3"
-  p.price = 25.0
-  p.stock_quantity = 8
+product3 = Product.new(name: "Product 3", description: "Description 3", price: 25.0, stock_quantity: 8)
 end
 product3.save
 
