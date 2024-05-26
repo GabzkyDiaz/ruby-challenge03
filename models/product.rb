@@ -8,6 +8,6 @@ class Product < ActiveRecord::Base
   # Association: Belongs to category (category_id)
   belongs_to :category
 
-  validates :name, presence: true, uniqueness: true, length: { minimum: 3 }
+  validates :name, presence: true, uniqueness: true, length: { minimum: 4 }
   validates :description, :price, :stock_quantity, presence: true
 end
