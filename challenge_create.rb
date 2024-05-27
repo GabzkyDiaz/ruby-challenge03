@@ -13,7 +13,6 @@ product2.save
 
 # Method 3
 product3 = Product.new(name: "Product 3", description: "Description 3", price: 25.0, stock_quantity: 8)
-end
 product3.save
 
 # Create a Product with Missing Required Columns
