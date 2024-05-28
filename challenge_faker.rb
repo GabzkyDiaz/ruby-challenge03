@@ -1,22 +1,27 @@
 require_relative 'ar.rb'
 
-# Create a set to keep track of unique category names
-created_categories = Set.new
-
+# Use Faker's unique method to generate unique category names
 10.times do
   begin
-    category_name = Faker::Commerce.department
-  end while created_categories.include?(category_name) || Category.exists?(name: category_name)
+    category_name = Faker::Commerce.unique.department
+  end while Category.exists?(name: category_name)
 
   category = Category.create(name: category_name)
-  created_categories.add(category_name)
 
+  # Use Faker's unique method to generate unique product names
   10.times do
+    begin
+      product_name = Faker::Commerce.unique.product_name
+    end while Product.exists?(name: product_name)
+
     category.products.create(
-      name: Faker::Commerce.product_name,
+      name: product_name,
       description: Faker::Lorem.sentence,
       price: Faker::Commerce.price,
       stock_quantity: rand(1..100)
     )
   end
 end
+
+# Clear unique generator after usage to prevent memory bloat
+Faker::UniqueGenerator.clear
